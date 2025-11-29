@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./calcstyle.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script type="text/javascript">
+        
+       function bodyload(){
+     
+            var inputbox = document.getElementById("lblnumber");
+            var buttons = document.querySelectorAll("button");
+            var expression = "";
+            for(var button of buttons){
+                button.addEventListener("click",function(event){
+                         var string = event.target.textContent;
+
+                        
+                         if(string==="AC"){
+                            expression= "";
+                            inputbox.value = 0;
+                         }
+                         else if(string==="⌫ "){
+                            expression= expression.slice(0,-1);
+                            inputbox.value = expression || 0;
+                         }
+                         else if(string==="="){
+                            expression = expression.replace("÷", "/");
+                            expression = expression.replace("x","*")
+                            expression = eval(expression).toString();
+                            inputbox.value = expression;
+                         }else{
+                            if(expression==="0" && string !=="." ){
+                                expression = string;
+                            }else{
+                                expression+=string;
+                            }
+                            inputbox.value = expression;
+                         }
+
+
+                });
+            };
+
+          
+        }
+    </script>
+
+</head>
+<body onload="bodyload()">
+    
+    <div class="calculator">
+        <header>
+            <div><span class="bi bi-arrows-angle-contract"></span></div>
+            <div>
+                <span class="bi bi-plus-slash-minus " ></span>
+                <span class="bi bi-grid "></span>
+                <span class="bi bi-three-dots-vertical"></span>
+            </div>
+        </header>
+        <div>
+            <input type="text" id="lblnumber" placeholder="" value="">
+        </div>
+        <div>
+            <button class="jk">AC</button>
+            <button class="jk">%</button>
+            <button class="jk">⌫ </button>
+            <button class="jk" id="jilu">÷</button>
+        </div>
+        <div>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="jk">x</button>
+        </div>
+        <div>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="jk">-</button>
+        </div>
+        <div>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="jk">+</button>
+        </div>
+        <div>
+            <button>00</button>
+            <button>0</button>
+            <button class="jk">.</button>
+            <button class="ok">=</button>
+        </div>
+    </div>
+</body>
+</html>
